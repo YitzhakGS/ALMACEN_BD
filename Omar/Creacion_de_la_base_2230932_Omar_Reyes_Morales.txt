@@ -1,0 +1,282 @@
+create New;
+use New;
+create table Registro (
+id_registro INT PRIMARY KEY,
+cantidad INT);
+
+create table Fecha_Registro (
+id_registro INT primary key, 
+dia_registro int,
+mes_registro int,
+año_registro int,
+foreign key (id_registro) references Registro(id_registro)
+);
+
+create table Producto (
+id_producto int primary key, 
+nombre_producto varchar(255),
+unidad_medida varchar(50)
+);
+
+create table Precio (
+id_producto int primary key, 
+precio_compra decimal(10, 2),
+precio_venta decimal (10, 2),
+foreign key(id_producto) references Producto(id_producto)
+);
+
+create table Pedido (
+id_pedido int primary key,
+id_producto int,
+cantidad int,
+foreign key (id_producto) references Producto(id_producto)
+);
+
+create table Fecha_pedido (
+id_pedido int primary key, 
+dia_pedido int,
+mes_pedido int,
+año_pedido int,
+foreign key (id_pedido) references Pedido(id_pedido)
+);
+
+create table Fecha_entrega (
+id_pedido int primary key,
+dia_entrega int,
+mes_entrega int,
+año_entrega int,
+foreign key (id_pedido) references Pedido (id_pedido)
+);
+
+create table Estado (
+id_estado int primary key, 
+estado_nombre varchar(50)
+);
+
+create table Empleado (
+id_empleado int primary key,
+cargo varchar (50),
+usuario varchar (50),
+contraseña varchar (50)
+);
+
+create table Nombre (
+id_empleado int primary key,
+primer_n varchar(50),
+segundo_n varchar(50),
+primer_ap varchar(50),
+segundo_ap varchar(50),
+foreign key(id_empleado) references Empleado(id_empleado)
+);
+
+create table Fecha_contratacion (
+id_empleado int primary key,
+dia_inicio int,
+mes_inicio int,
+año_inicio int,
+foreign key (id_empleado) references Empleado (id_empleado)
+);
+
+create table Provedor (
+id_provedor int primary key,
+nombre_empresa varchar(100),
+RFC varchar(50)
+);
+
+create table Direccion (
+id_provedor int,
+calle varchar(100),
+colonia varchar(100),
+No_exterior varchar(20),
+No_interior varchar(20),
+foreign key (id_provedor) references Provedor(id_provedor)
+);
+
+create table Correo_electronico (
+id_provedor int, 
+usuario varchar (50),
+dominio varchar (50),
+foreign key (id_provedor) references Provedor(id_provedor)
+);
+
+create table Telefono (
+id_provedor int,
+lada varchar(50),
+dominio varchar(50),
+foreign key (id_provedor) references Provedor(id_provedor)
+);
+
+
+INSERT INTO Registro (id_registro, cantidad) VALUES (1, 10);
+INSERT INTO Registro (id_registro, cantidad) VALUES (2, 20);
+INSERT INTO Registro (id_registro, cantidad) VALUES (3, 15);
+INSERT INTO Registro (id_registro, cantidad) VALUES (4, 8);
+INSERT INTO Registro (id_registro, cantidad) VALUES (5, 12);
+INSERT INTO Registro (id_registro, cantidad) VALUES (6, 30);
+INSERT INTO Registro (id_registro, cantidad) VALUES (7, 5);
+INSERT INTO Registro (id_registro, cantidad) VALUES (8, 18);
+INSERT INTO Registro (id_registro, cantidad) VALUES (9, 25);
+INSERT INTO Registro (id_registro, cantidad) VALUES (10, 14);
+INSERT INTO Registro (id_registro, cantidad) VALUES (11, 22);
+INSERT INTO Registro (id_registro, cantidad) VALUES (12, 17);
+INSERT INTO Registro (id_registro, cantidad) VALUES (13, 9);
+INSERT INTO Registro (id_registro, cantidad) VALUES (14, 28);
+INSERT INTO Registro (id_registro, cantidad) VALUES (15, 11);
+
+
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (1, 15, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (2, 10, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (3, 5, 4, 2024);
+
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (23, 21, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (19, 20, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (23, 21, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (6, 22, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (7, 23, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (8, 24, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (9, 25, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (10, 26, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (11, 27, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (12, 28, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (13, 29, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (14, 30, 4, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (15, 1, 5, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (16, 2, 5, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (17, 3, 5, 2024);
+INSERT INTO Fecha_registro (id_registro, dia_registro, mes_registro, año_registro) VALUES (18, 4, 5, 2024); 
+
+
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (1, 'Leche', 'Litro');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (2, 'Pan', 'Pieza');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (3, 'Huevos', 'Docena');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (4, 'Azúcar', 'Kilogramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (5, 'Café', 'Gramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (6, 'Arroz', 'Kilogramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (7, 'Aceite de oliva', 'Litro');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (8, 'Sal', 'Gramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (9, 'Harina de trigo', 'Kilogramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (10, 'Vinagre', 'Litro');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (11, 'Pasta', 'Gramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (12, 'Salsa de tomate', 'Mililitro');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (13, 'Miel', 'Kilogramo');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (14, 'Lechuga', 'Pieza');
+INSERT INTO Producto (id_producto, nombre_producto, unidad_medida) VALUES (15, 'Papas', 'Kilogramo');
+
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (1, 10.50, 12.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (2, 2.00, 2.50);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (3, 15.00, 18.00);
+ INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (4, 15.00, 20.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (5, 5.00, 8.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (6, 10.00, 15.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (7, 25.00, 30.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (8, 3.00, 5.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (9, 12.00, 18.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (10, 8.00, 12.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (11, 4.00, 6.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (12, 6.00, 10.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (13, 20.00, 25.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (14, 2.50, 4.00);
+INSERT INTO Precio (id_producto, precio_compra, precio_venta) VALUES (15, 10.00, 15.00);
+ 
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (1, 1, 2);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (2, 2, 3);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (3, 3, 1);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (4, 4, 3);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (5, 5, 2);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (6, 6, 5);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (7, 7, 1);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (8, 8, 4);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (9, 9, 3);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (10, 10, 2);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (11, 11, 6);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (12, 12, 3);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (13, 13, 2);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (14, 14, 5);
+INSERT INTO Pedido (id_pedido, id_producto, cantidad) VALUES (15, 15, 4);
+
+
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (1, 15, 4, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (2, 16, 4, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (3, 17, 4, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (4, 5, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (5, 6, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (6, 7, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (7, 8, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (8, 9, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (9, 10, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (10, 11, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (11, 12, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (12, 13, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (13, 14, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (14, 15, 5, 2024);
+INSERT INTO Fecha_pedido (id_pedido, dia_pedido, mes_pedido, año_pedido) VALUES (15, 16, 5, 2024);
+
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (1, 20, 4, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (2, 21, 4, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (3, 22, 4, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (4, 10, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (5, 11, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (6, 12, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (7, 13, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (8, 14, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (9, 15, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (10, 16, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (11, 17, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (12, 18, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (13, 19, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (14, 20, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (15, 21, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (17, 23, 5, 2024);
+INSERT INTO Fecha_entrega (id_pedido, dia_entrega, mes_entrega, año_entrega) VALUES (18, 24, 5, 2024);
+
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (1, 'Pendiente');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (2, 'Enviado');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (3, 'Recibido');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (4, 'Preparando');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (5, 'En tránsito');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (6, 'Entregado');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (7, 'Devuelto');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (8, 'Cancelado');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (9, 'Esperando confirmación');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (10, 'Listo para enviar');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (11, 'En espera');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (12, 'Procesando');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (13, 'Recibido con daños');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (14, 'Recibido sin problemas');
+INSERT INTO Estado (id_estado, estado_nombre) VALUES (15, 'En revisión');
+
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (1, 'Gerente', 'gerente1', 'clave123');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (2, 'Cajero', 'cajero1', 'clave456');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (3, 'Almacenero', 'almacen1', 'clave789');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (4, 'Vendedor', 'vendedor1', 'contraseña123');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (5, 'Recepcionista', 'recepcion1', 'clave456');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (6, 'Gerente de almacén', 'gerente_almacen', 'password789');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (7, 'Asistente de ventas', 'asistente_ventas', 'clave987');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (8, 'Gerente de tienda', 'gerente_tienda', 'password654');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (9, 'Contador', 'contador1', 'clave321');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (10, 'Recursos humanos', 'rrhh1', 'password1234');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (11, 'Supervisor de ventas', 'supervisor_ventas', 'clave567');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (12, 'Analista de datos', 'analista_datos', 'password890');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (13, 'Técnico de soporte', 'soporte_tecnico', 'clave246');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (14, 'Encargado de compras', 'compras1', 'password135');
+INSERT INTO Empleado (id_empleado, cargo, usuario, contraseña) VALUES (15, 'Marketing', 'marketing1', 'clave579');
+
+SELECT Pedido.id_pedido, Pedido.cantidad, Producto.nombre_producto, Producto.unidad_medida
+FROM Pedido
+INNER JOIN Producto ON Pedido.id_producto = Producto.id_producto;
+
+SELECT Empleado.id_empleado, Nombre.primer_nombre, Nombre.segundo_nombre, Nombre.primer_apellido, Nombre.segundo_apellido
+FROM Empleado
+INNER JOIN Nombre ON Empleado.id_empleado = Nombre.id_empleado;
+
+SELECT Registro.id_registro, Registro.cantidad, Fecha_registro.dia_registro, Fecha_registro.mes_registro, Fecha_registro.anio_registro
+FROM Registro
+INNER JOIN Fecha_registro ON Registro.id_registro = Fecha_registro.id_registro;
+
+SELECT Pedido.id_pedido, Pedido.cantidad, Fecha_pedido.dia_pedido, Fecha_pedido.mes_pedido, Fecha_pedido.anio_pedido
+FROM Pedido
+INNER JOIN Fecha_pedido ON Pedido.id_pedido = Fecha_pedido.id_pedido;
+
+SELECT Pedido.id_pedido, Pedido.cantidad, Estado.estado_nombre
+FROM Pedido
+INNER JOIN Estado ON Pedido.id_estado = Estado.id_estado;
